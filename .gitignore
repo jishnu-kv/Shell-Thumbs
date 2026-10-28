@@ -1,0 +1,15 @@
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+
+# Visual Studio / Editor files
+.vs/
+.vscode/
+*.user
+*.suo

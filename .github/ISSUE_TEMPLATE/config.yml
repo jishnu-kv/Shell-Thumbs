@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ShellThumbs Support & Discussion
+    url: https://github.com/jishnu-kv/Shell-Thumbs/issues/new/choose
+    about: Ask questions or discuss new features for ShellThumbs.
