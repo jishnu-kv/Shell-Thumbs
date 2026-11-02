@@ -25,25 +25,24 @@
 
 ## 🚀 Overview
 
-**ShellThumbs** is a zero-dependency, ultra-fast Windows Shell Extension suite and modern WinUI 3 management utility providing native Windows File Explorer **Thumbnail Providers** (`IThumbnailProvider`) and **Preview Handlers** (`IPreviewHandler`) for complex 2D, 3D, CAD, vector, font, and code formats.
+**ShellThumbs** is a zero-dependency, ultra-fast Windows Shell Extension suite and modern native C++23 Win32 / Fluent UI management utility providing native Windows File Explorer **Thumbnail Providers** (`IThumbnailProvider`) and **Preview Handlers** (`IPreviewHandler`) for complex 2D, 3D, CAD, vector, font, and code formats.
 
 ### Key Highlights
 * **Sub-Millisecond Thumbnail Generation**: Instant rendering directly inside Windows File Explorer folders.
 * **Hardware-Accelerated 3D & Vector Rendering**: Direct3D 11 and Direct2D pipelines for smooth, high-fidelity rendering.
 * **Isolated Process Security**: Preview handlers execute safely inside Windows' isolated surrogate process (`prevhost.exe`).
-* **Modern Windows 11 Fluent UI App**: Easy-to-use management app with Mica material, instant search, and one-click format configuration.
+* **Modern Windows 11 Fluent UI App**: Easy-to-use native Win32 management app with Mica material, instant search, and one-click format configuration.
+* **Zero Background Footprint**: Hand-crafted native C++ parsers without heavy background processes or services.
 
 ---
 
 ## 📁 Supported Formats
 
-ShellThumbs supports **41+ primary formats** and **539 programming language code extensions**:
+ShellThumbs supports **75 primary formats** and **539 programming language code extensions**:
 
-### 1. 3D Models & CAD Files
+### 1. 3D Models & Meshes
 | Format | Extension | Thumbnail | Preview | Description |
 |---|---|:---:|:---:|---|
-| **STEP 3D CAD** | `.step`, `.stp` | ✅ | ✅ | Standard for the Exchange of Product model data (ASCII wireframe & ISO projection) |
-| **IGES 3D CAD** | `.iges`, `.igs` | ✅ | ✅ | Initial Graphics Exchange Specification CAD wireframe |
 | **Wavefront 3D** | `.obj` | ✅ | ✅ | Standard 3D geometry with material and texture support |
 | **Autodesk FBX** | `.fbx` | ✅ | ✅ | Binary FBX tokenized 3D mesh and scene parser |
 | **glTF 2.0 Binary** | `.glb` | ✅ | ✅ | Khronos Group binary 3D container |
@@ -51,15 +50,29 @@ ShellThumbs supports **41+ primary formats** and **539 programming language code
 | **Stereolithography** | `.stl` | ✅ | ✅ | 3D printing binary & ASCII triangle meshes |
 | **Stanford Triangle** | `.ply` | ✅ | ✅ | 3D scanning and polygonal mesh format |
 | **COLLADA 3D** | `.dae` | ✅ | ✅ | Digital Asset Exchange XML geometry |
-| **Rhino 3D** | `.3dm` | ✅ | ✅ | Robert McNeel & Associates Rhino 3D model |
+| **Universal Scene Description** | `.usd`, `.usdz` | ✅ | ✅ | Pixar USD / USDC crate delta-tokenized mesh format |
 | **Autodesk 3DS** | `.3ds` | ✅ | ✅ | Legacy 3D Studio mesh chunk format |
 | **SketchUp** | `.skp` | ✅ | ✅ | Trimble SketchUp 3D scene model |
 | **Autodesk 3ds Max** | `.max` | ✅ | ✅ | OLE container embedded scene stream preview |
 | **3D Manufacturing** | `.3mf` | ✅ | ✅ | Modern 3D printing container format |
 | **Blender Project** | `.blend` | ✅ | ✅ | Blender 3D scene embedded thumbnail extractor |
-| **Universal Scene Description** | `.usd`, `.usdz` | ✅ | ✅ | Pixar USD / USDC crate delta-tokenized mesh format |
+| **Cinema 4D Scene** | `.c4d` | ✅ | ✅ | Maxon Cinema 4D frame extractor |
+| **Rhino 3D** | `.3dm` | ✅ | ✅ | Robert McNeel & Associates Rhino 3D model |
 
-### 2. Design, Vector & Publishing
+### 2. CAD & Engineering
+| Format | Extension | Thumbnail | Preview | Description |
+|---|---|:---:|:---:|---|
+| **STEP 3D CAD** | `.step`, `.stp` | ✅ | ✅ | Standard for the Exchange of Product model data (topological wireframe & ISO projection) |
+| **IGES 3D CAD** | `.iges`, `.igs` | ✅ | ✅ | Initial Graphics Exchange Specification CAD wireframe |
+| **AutoCAD Drawing** | `.dwg` | ✅ | ✅ | AutoCAD sentinel header & WIC PNG/BMP decoder |
+| **AutoCAD Exchange** | `.dxf` | ✅ | ✅ | ASCII DXF entity parser & Direct2D vector geometry |
+| **SolidWorks Part & Assembly** | `.sldprt`, `.sldasm` | ✅ | ✅ | SolidWorks CFB container thumbnail stream extractor |
+| **Autodesk Inventor** | `.ipt`, `.iam` | ✅ | ✅ | Inventor CFB container thumbnail stream extractor |
+| **Autodesk Fusion 360** | `.f3d` | ✅ | ✅ | Fusion 360 ZIP package thumbnail extractor |
+| **FreeCAD Document** | `.fcstd` | ✅ | ✅ | FreeCAD ZIP container thumbnail extractor |
+| **Autodesk Maya Binary** | `.mb` | ✅ | ✅ | Maya Binary IFF thumbnail chunk extractor |
+
+### 3. Design, Vectors & Art
 | Format | Extension | Thumbnail | Preview | Description |
 |---|---|:---:|:---:|---|
 | **Scalable Vector Graphics** | `.svg` | ✅ | ✅ | Native Direct2D vector graphics engine |
@@ -68,16 +81,21 @@ ShellThumbs supports **41+ primary formats** and **539 programming language code
 | **Encapsulated PostScript** | `.eps` | ✅ | ✅ | PostScript vector & TIFF preview decoder |
 | **Adobe InDesign** | `.indd`, `.idml` | ✅ | ✅ | Shuksan database defragmenter & IDML XMP extractor |
 | **CorelDRAW** | `.cdr` | ✅ | ✅ | CorelDRAW ZIP container vector preview |
+| **Krita Painting** | `.kra` | ✅ | ✅ | Krita ZIP mergedimage.png preview extractor |
+| **GIMP Image** | `.xcf` | ✅ | ✅ | GIMP embedded thumbnail extractor |
+| **Procreate Artwork** | `.procreate` | ✅ | ✅ | Procreate ZIP thumbnail extractor |
+| **Comic Book Archive** | `.cbz` | ✅ | ✅ | Comic Book Archive first-page cover extractor |
+| **EPUB Publication** | `.epub` | ✅ | ✅ | EPUB container OPF cover extractor |
 
-### 3. Engineering & CNC Toolpath
+### 4. CNC & Manufacturing
 | Format | Extension | Thumbnail | Preview | Description |
 |---|---|:---:|:---:|---|
-| **AutoCAD Drawing** | `.dwg` | ✅ | ✅ | AutoCAD sentinel header & WIC PNG/BMP decoder |
-| **AutoCAD Exchange** | `.dxf` | ✅ | ✅ | ASCII DXF entity parser & Direct2D vector geometry |
 | **Delcam ArtCAM** | `.art`, `.rlf` | ✅ | ✅ | ArtCAM 3D reliefs and machining models |
-| **CNC & 3D G-code** | `.gcode`, `.bgcode`, `.nc`, `.tap`, `.gco`, `.ngc` | ✅ | ✅ | Slicer embedded previews & 3D toolpath trajectories |
+| **G-code Toolpath** | `.gcode`, `.gco` | ✅ | ✅ | Slicer embedded PNG/JPG/QOI decoder + 3D toolpath fallback |
+| **Prusa Binary G-code** | `.bgcode` | ✅ | ✅ | MeatPack / Deflate block thumbnail extractor |
+| **CNC Numerical Control** | `.nc`, `.tap`, `.ngc` | ✅ | ✅ | CNC Numerical Control vector trajectory renderer |
 
-### 4. Camera RAW Photography
+### 5. Camera RAW Photography & Textures
 | Format | Extension | Thumbnail | Preview | Description |
 |---|---|:---:|:---:|---|
 | **Canon RAW** | `.cr2`, `.cr3` | ✅ | ✅ | Canon Digital Camera RAW |
@@ -88,17 +106,25 @@ ShellThumbs supports **41+ primary formats** and **539 programming language code
 | **Panasonic Lumix RAW** | `.rw2` | ✅ | ✅ | Panasonic Digital Camera RAW |
 | **Pentax RAW** | `.pef` | ✅ | ✅ | Pentax Electronic File |
 | **Fujifilm RAW** | `.raf` | ✅ | ✅ | Fujifilm Digital Camera RAW |
+| **DirectDraw Surface** | `.dds` | ✅ | ✅ | Direct3D GPU compressed texture |
+| **Truevision Targa** | `.tga` | ✅ | ✅ | Raster graphics texture format |
+| **Radiance HDR** | `.hdr` | ✅ | ✅ | Radiance High Dynamic Range image |
+| **OpenEXR** | `.exr` | ✅ | ✅ | Industrial Light & Magic OpenEXR format |
 
-### 5. Media, Typography & Code
+### 6. Media, Documents & Typography
 | Format | Extension | Thumbnail | Preview | Description |
 |---|---|:---:|:---:|---|
+| **High Efficiency Image** | `.heic`, `.heif` | ✅ | ✅ | WIC HEIF/HEIC codec decoder |
+| **Animated GIF** | `.gif` | ✅ | ✅ | WIC multi-frame animation renderer & player |
+| **Animated PNG** | `.apng` | ✅ | ✅ | APNG animation renderer |
+| **PNG / Windows Cursor** | `.png`, `.cur` | ✅ | ✅ | High-speed raster & cursor preview |
+| **Quite OK Image** | `.qoi` | ✅ | ✅ | Native high-speed lossless QOI decoder |
+| **PC Paintbrush** | `.pcx` | ✅ | ✅ | ZSoft PCX run-length bitmap decoder |
+| **Wireless Bitmap** | `.wbmp` | ✅ | ✅ | WAP 1-bit monochrome bitmap decoder |
+| **PDF Document** | `.pdf` | ✅ | ✅ | Portable Document Format rasterizer |
 | **TrueType & OpenType Fonts** | `.ttf`, `.otf` | ✅ | ✅ | DirectWrite typography specimen layout |
-| **Animated GIF** | `.gif` | ✅ | ✅ | Multi-frame animated image player |
-| **Quite OK Image** | `.qoi` | ✅ | ✅ | Lossless fast image format |
-| **Cinema 4D Scene** | `.c4d` | ✅ | ✅ | Maxon Cinema 4D scene |
-| **Truevision Targa** | `.tga` | ✅ | ✅ | Game and texture raster format |
-| **DirectDraw Surface** | `.dds` | ✅ | ✅ | Direct3D GPU compressed texture |
-| **Markdown Documents** | `.md` | — | ✅ | GitHub Flavored Markdown typography renderer |
+| **Tabular Data** | `.csv`, `.tsv` | — | ✅ | Interactive tabular grid engine with dark/light themes |
+| **Markdown Documents** | `.md`, `.markdown`, ... | — | ✅ | Native Direct2D CommonMark/GFM typography engine |
 | **539 Code & Script Files** | `.cs`, `.cpp`, `.py`, `.rs`, `.ts`, `.json`, ... | — | ✅ | Syntax-highlighted code preview engine |
 
 ---
