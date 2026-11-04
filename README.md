@@ -1,6 +1,10 @@
 # ShellThumbs
 
 <p align="center">
+  <img src="main_ui.png" alt="ShellThumbs User Interface" width="100%">
+</p>
+
+<p align="center">
   <strong>High-Performance Windows Shell Extension Suite for File Explorer Thumbnails & Interactive Previews</strong>
 </p>
 
@@ -15,7 +19,7 @@
 
 ## 📌 Public Issue Tracker & Community Hub
 
-> **Note**: This repository serves as the **official public issue tracker, format request hub, and community forum** for ShellThumbs. The application source code is maintained in a private repository.
+> **Note**: This repository serves as the **official public issue tracker, format request hub, and community forum** for ShellThumbs.
 
 * 🐛 **Found a bug or rendering issue?** &rarr; [Submit a Bug Report](https://github.com/jishnu-kv/Shell-Thumbs/issues/new?template=bug_report.md)
 * 💡 **Need support for a new 2D, 3D, CAD, or graphic format?** &rarr; [Submit a Format Request](https://github.com/jishnu-kv/Shell-Thumbs/issues/new?template=format_request.md)
